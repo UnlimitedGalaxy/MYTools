@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+	<style></style>
+	<script src="http://oss.sheetjs.com/js-xlsx/xlsx.full.min.js" type="text/javascript" ></script>
+</head>
+<body>
+	<a href="" id="hf" download="test.xlsx">hello</a>
+	<script>
+		window.onerror = function() {
+		  console.log('arguments: ', arguments);
+		}
+		throw new Error('test');
+	</script>
+</body>
+
+</html>
