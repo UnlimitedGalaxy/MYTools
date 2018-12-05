@@ -7,3 +7,9 @@ const totalPages = Math.ceil(total / size);
 while (++i <= totalPages) {
 
 }
+
+var i = self.fireworks.length;
+while(i--){
+  var f = self.fireworks[i];
+  f.draw();
+};

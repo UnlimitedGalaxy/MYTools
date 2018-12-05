@@ -1,17 +1,39 @@
-const fetch = require('../tools/fetch')
+function colorRGB2Hex(color) {
+  // if (!~color.indexOf('rgb(')) {
+  //   return new Error('color must be a agb format');
+  // }
+  
+  let rgb = color.split(',');
+  // let r = parseInt(rgb[0].split('(')[1]);
+  let r = 'f';
+  console.log((parseInt(r)).toString(2))
+  let g = parseInt(rgb[1]);
+  let b = parseInt(rgb[2].split(')')[0]);
+  
+  // let hex = ((1 << 24) + (r << 16) + (g << 8) + b).toString(16);
+  let hex = '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+  return hex;
+}
 
-fetch.GET({
-  uri: 'http://vugcadmin.sz.uae.uc.cn/1/opt/tags?size=20&page=1&status=1&biz_id=1014&scene_id=muggle',
-  options: {
-    headers: {
-      cookie: '_UP_A4A_11_=wb70f14ffb614284bca2d08da7764ffc; cna=xa7EEzDn6hMCAWoLH4+DJX2E; Hm_lvt_c337010bc5a1154d2fb6741a4d77d226=1537262776,1537323101; __utma=228792728.655522095.1537262777.1537262777.1537323101.2; __utmz=228792728.1537262777.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); isg=BPHxrR4QDkktrqIMx-78-ea6FH2VuIkss0R7T9MG67jR-hFMGy51IJ97GI6cN_2I; _ABRA=TAirIDIZkbLs1mDaL2Han1GxXJPg99N9opLrQrpE5sl4ciyIu2DSyUvPvYKfI6QydA1MlfE2iVIuhfoWFcJtjZom16WxjWldtR3cVd7tU9e5JcS-EXARZAaMY2IJa1yyPfE-KxIclqdyt85TPnSDrg8O0hBPdcaUpH6V4YIfMw8FdhXs2Vrxn9nlQu9q69Nf; ugcVersion=V1.9.3'
-    }
+function clearEmptyElements(str) {
+  const reg = /<(span|a|p)[^>]*?><\/(span|a|p)>/;
+  debugger;
+  if (reg.test(str)) {
+    str = str.replace(reg, '');
+    return clearEmptyElements(str);
+  } else {
+    return str;
   }
-})
-  .then(res => {
+}
+
+  `<a href="http://www.baidu.com" target="_blank" style="background-color: rgb(255, 255, 255); color: rgb(38, 150, 255);">联系客服&gt;</a>`.replace(/<a[^>]+? \bcolor\b: (rgb.*?\)).*?<\/a/, function(match, p1) {
     debugger;
   })
-  .catch(e => {
-    debugger;
-  })
-// BUC Server Error: [@{"content":"{\"errorMessage\":\"invalid ssoToken\",\"isSuccess\":\"false\"}","hasError":false}:fe4e19a235b14474b701e48e343faf000eecda10].
+// const testStr = `<p><span><a herf="http://www.baidu.com"></a></span></p>I am happy`;
+// console.log(clearEmptyElements(testStr));
+// console.log(colorRGB2Hex('rgb(255, 255, 255)'));
+
+/*
+* https://g.alicdn.com/UGC/ugc-admin-plat-web/1.9.4/1.1.js
+* https://g-assets.daily.taobao.net/UGC/ugc-admin-plat-web/1.9.4/1.1.js
+* */

@@ -27,12 +27,12 @@
 		
 		#canvas-container {
 			background: #000 url(https://jackrugile.com/lab/fireworks-v2/images/bg.jpg);
-			height: 400px;
-			left: 50%;
-			margin: -200px 0 0 -300px;
+			height: 100%;
+			left: 0;
+			/*margin: -200px 0 0 -300px;*/
 			position: absolute;
-			top: 50%;
-			width: 600px;
+			top: 0;
+			width: 100%;
 			z-index: 2;
 		}
 		
@@ -118,8 +118,8 @@
           return false;
         };
         
-        self.canvas.width = self.cw = 600;
-        self.canvas.height = self.ch = 400;
+        self.canvas.width = self.cw = window.innerWidth;
+        self.canvas.height = self.ch = window.innerHeight;
         
         self.particles = [];
         self.partCount = 30;

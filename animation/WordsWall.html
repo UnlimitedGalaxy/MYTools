@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>文字墙</title>
+	<style>
+		@import url(https://fonts.googleapis.com/css?family=VT323);
+		html {
+			background-color: #0c0a0e;
+			font-family: "M+ 1mn", "VT323", monospace;
+			font-size: 2.2vmax;
+			line-height: 1.75em;
+			overflow: hidden;
+		}
+		
+		.quote {
+			cursor: default;
+			color: #33022d;
+			margin: 0 auto 0;
+			max-width: 82vw;
+			-webkit-perspective: 1000vmin;
+			perspective: 1000vmin;
+			width: 33rem;
+		}
+		
+		.quote span {
+			border-radius: 0.3em;
+			display: inline-block;
+			padding: 0 0.25em;
+			margin: 0.1em 0.1em;
+			-webkit-transform: translateZ(-500vmin) rotateX(90deg);
+			transform: translateZ(-500vmin) rotateX(90deg);
+			transition: background 2s ease-in, color 5s ease-out, text-shadow 0.5s ease-out, -webkit-transform 15s ease-in;
+			transition: background 2s ease-in, color 5s ease-out, text-shadow 0.5s ease-out, transform 15s ease-in;
+			transition: background 2s ease-in, color 5s ease-out, text-shadow 0.5s ease-out, transform 15s ease-in, -webkit-transform 15s ease-in;
+		}
+		
+		.quote .highlight, .quote span:hover {
+			background: rgba(255, 18, 166, 0.1);
+			color: #ff71d2;
+			text-shadow: 0 0 0.6em #ff00d5;
+			-webkit-transform: translateZ(0) rotateX(0deg);
+			transform: translateZ(0) rotateX(0deg);
+			-webkit-transform-origin: 50% 100%;
+			transform-origin: 50% 100%;
+			transition: all 0.3s ease-out;
+			z-index: 9001;
+		}
+	
+	</style>
+</head>
+<body>
+	<div class="quote" id="neat">好美啊 永远18 健康 漂亮 beautiful gorgeous pretty stunning young smile 好美啊 永远18 健康 漂亮 beautiful gorgeous pretty stunning young smile 好美啊 永远18 健康 漂亮 beautiful gorgeous pretty stunning young smile 好美啊 永远18 健康 漂亮 beautiful gorgeous pretty stunning young smile 好美啊 永远18 健康 漂亮 beautiful gorgeous pretty stunning young smile 好美啊 永远18 健康 漂亮 beautiful gorgeous pretty stunning young smile 好美啊 永远18 健康 漂亮 beautiful gorgeous pretty stunning young smile 好美啊 永远18 健康 漂亮 beautiful gorgeous pretty stunning young smile 好美啊 永远18 健康 漂亮 beautiful gorgeous pretty stunning young smile </div>
+	
+	<script>
+    var eQuote = document.querySelector("#neat");
+    
+    var regex = /\ /;
+    // save the original paragraph as array of words
+    // regex = /[,.?!;:]/; /* Uncomment for sentences */
+    var aQuote = eQuote.innerHTML.split(regex);
+    
+    // wrap each word with a span
+    eQuote.innerHTML = "";
+    for(var word in aQuote){
+      eQuote.innerHTML += "<span>" + aQuote[word] + "</span>";
+    }
+    // ...and save them for later
+    var eWords = document.querySelectorAll("span");
+    
+    
+    var repeat = setInterval(function() {
+      if(Math.random() > 0.85) fClearAllHighlights(eQuote);
+      fHighlightRandomWord(eWords);
+    }, 275);
+    
+    function fHighlightRandomWord (e) {
+      var iRandom = Math.floor(Math.random() * e.length);
+      e[iRandom].classList.add("highlight");
+    }
+    
+    function fClearAllHighlights (e) {
+      var nlHighlights = e.querySelectorAll(".highlight");
+      // convert the nodeList into an array
+      var aHighlights = Array.prototype.slice.call(nlHighlights);
+      // remove .highlight from the spans which have it
+      Array.prototype.map.call(aHighlights, function(){
+        arguments[0].classList.remove("highlight");
+      });
+    }
+	</script>
+</body>
+</html>
