@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>Test</title>
+	<style>
+		@import url(https://fonts.googleapis.com/css?family=Indie+Flower);
+		body {
+			margin: 0;
+			padding: 0;
+			background: lightgoldenrodyellow;
+		}
+		
+		.paper {
+			position: absolute;
+			height: 550px;
+			width: 450px;
+			background: rgba(255,255,255,0.9);
+			margin: -275px -225px;
+			left: 50%;
+			top: 50%;
+			box-shadow: 0px 0px 5px 0px #888;
+		}
+		
+		.animation {
+			-webkit-animation: turn_page 2s;
+			-moz-animation: turn_page 2s;
+			-ms-animation: turn_page 2s;
+			animation: turn_page 2s;
+			background: #FFF;
+			overflow: hidden;
+			backface-visibility: visible;
+			-webkit-perspective-origin: left;
+			-moz-perspective-origin: left;
+			-ms-perspective-origin: left;
+			perspective-origin: left;
+			-webkit-transform-style: preserve-3d;
+			-moz-transform-style: preserve-3d;
+			-ms-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+			/*width: -webkit-calc(50% - 2px);*/
+			/*width: -moz-calc(50% - 2px);*/
+			/*width: -ms-calc(50% - 2px);*/
+			/*width: calc(50% - 2px);*/
+			-webkit-transform-origin: left;
+			-moz-transform-origin: left;
+			-ms-transform-origin: left;
+			transform-origin: left;
+			z-index: 10;
+		}
+		
+		@keyframes turn_page {
+			0% {
+				/*left:50%;*/
+				-webkit-transform:rotateY(0);
+				-moz-transform:rotateY(0);
+				-ms-transform:rotateY(0);
+				transform:rotateY(0);
+				/*-webkit-width:calc(50% - 2px);*/
+				/*-moz-width:calc(50% - 2px);*/
+				/*-ms-width:calc(50% - 2px);*/
+				/*width:calc(50% - 2px);*/
+				box-shadow: 0px 1px 5px -1px rgba(0,0,0,1);
+			}
+			50% {
+				visibility: visible;
+			}
+			51% {
+				visibility: hidden;
+			}
+			100% {
+				visibility: hidden;
+				/*-webkit-left:calc(50% + 2px);*/
+				/*-moz-left:calc(50% + 2px);*/
+				/*-ms-left:calc(50% + 2px);*/
+				/*left:calc(50% + 2px);*/
+				-webkit-transform:rotateY(-180deg);
+				-moz-transform:rotateY(-180deg);
+				-ms-transform:rotateY(-180deg);
+				transform:rotateY(-180deg);
+				width:225px;
+				box-shadow: 0px 1px 5px -1px transparent;
+			}
+		}
+		.paper::before {
+			content: '';
+			position: absolute;
+			left: 45px;
+			height: 100%;
+			width: 2px;
+			background: rgba(255,0,0,0.4);
+		}
+		.lines {
+			margin-top: 40px;
+			height: calc(100% - 40px);
+			width: 100%;
+			background-image: repeating-linear-gradient(white 0px, white 24px, steelblue 25px);
+		}
+		.text {
+			position: absolute;
+			top: 65px;
+			left: 55px;
+			bottom: 10px;
+			right: 10px;
+			line-height: 25px;
+			font-family: 'Indie Flower';
+			overflow: hidden;
+			outline: none;
+		}
+		.holes {
+			position: absolute;
+			left: 10px;
+			height: 25px;
+			width: 25px;
+			background: lightgoldenrodyellow;
+			border-radius: 50%;
+			box-shadow: inset 0px 0px 2px 0px #888;
+		}
+		.hole-top {
+			top: 10%;
+		}
+		.hole-middle {
+			top: 50%;
+		}
+		.hole-bottom {
+			bottom: 10%;
+		}
+	</style>
+</head>
+<body>
+	<div class="paper animation">
+		<div class="lines">
+			<div class="text" contenteditable spellcheck="false">
+				You can edit this text! <br /><br />
+				Cupcake ipsum dolor sit amet liquorice fruitcake. Candy canes jelly beans sweet roll cupcake lollipop. Powder carrot cake toffee brownie. Marshmallow sweet roll donut. Chocolate cake apple pie candy canes tiramisu dragée wafer. Croissant cookie lemon drops tiramisu jelly-o donut. Sweet gummi bears ice cream.</div>
+		</div>
+		<div class="holes hole-top"></div>
+		<div class="holes hole-middle"></div>
+		<div class="holes hole-bottom"></div>
+	</div>
+</body>
+</html>

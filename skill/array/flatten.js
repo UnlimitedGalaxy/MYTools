@@ -8,7 +8,7 @@ const deepFlatten = (arr) => [].concat(...arr.map(i => Array.isArray(i) ? deepFl
 * */
 const myConcat = function() {
   let newArr = [];
-  for (let i = 0; this[i]; i++){
+  for (let i = 0; this[i]; i++){ // 自己本身就是数组，需要把自身的数据push进去
     newArr.push(i);
   }
   for (let i = 0; arguments[i]; i++){
@@ -23,5 +23,18 @@ const myConcat = function() {
   return newArr;
 }
 
-const test = [];
-console.log('result: ', myConcat.call(test, '1', [1, 3]));
+// const test = [];
+// console.log('result: ', myConcat.call(test, '1', [1, 3]));
+
+function flatten(arr) {
+  while(arr.some(item=>Array.isArray(item))) {
+    arr = [].concat(...arr); // concat 本身就具有解构一层的能力
+  }
+  return arr;
+}
+
+let givenArr = [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10];
+
+// flatten(givenArr);
+let test = [[1, 2, 3]]
+console.log(...test);

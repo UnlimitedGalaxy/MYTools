@@ -2,6 +2,7 @@ const assert = require('assert');
 /*
 * resource:
 * 1. good application: https://blog.csdn.net/qq_39207948/article/details/80507613
+* 2. w3c http://www.w3school.com.cn/js/pro_js_operators_bitwise.asp
 * */
 /*
 * & 与运算
@@ -24,6 +25,7 @@ assert.strictEqual(andScope.test2 & 1, 0, `期望${andScope.test2}是偶数`);
 * -> 有一个数字它的前几位被当作A用途，而后几位被用当B用途，为了去掉前几位对B用途的影响，就可以这样与一下
 * 2. 使用按位与&进行标志位判断
 * -> 权限的值与用户所拥有的权限值&一下，如果是0即为没有权限，如果不为0即为有权限
+* 3. 任何与0，都得到0，可以用于去掉无效位的数据
 * */
 // assert.strictEqual(andScope.test1 | 1, 0, `期望${andScope.test1}是偶数`); //或不能用来做奇数偶数判断
 /*
@@ -65,12 +67,13 @@ switch(posFlag) {
 * 1. ^运算符跟|类似，但有一点不同的是 如果两个操作位都为1的话，结果产生0
 *    异或的运算过程可以当作把两个数加起来，然后进位去掉，0 + 0 = 0，1 + 0 = 1，1 + 1 = 0。
 * 2. 异为1，同为0
-* 3. 任何数异或后，都是它本身
+* 3. 任何数异或0后，都是它本身
 * 4. 任何数异或任何数，都等于0
 * */
 let c1 = 0b100;
 let c2 = 0b110;
-// console.log('^ result: ', (c1 ^ c2).toString(2));
+// console.log('^ result: ', c1 ^ 0 );
+assert.strictEqual(c1 ^ 0, c1); // 任何数异或0后，都是它本身
 
 /*
 * 应用数值互换
@@ -189,4 +192,38 @@ console.log((temp >> 2).toString(2));
 * */
 // console.log('temp <<: ', temp << 2);
 
+/*
+* 无符号右移运算 >>>
+* 整体移动不考虑符号位
+* */
 
+/*
+* 应用
+* */
+/*
+* 加法用位运算来实现
+* 原理：
+* 1. ^ 可得不进为的数值
+* 2. & 可得进位数值
+* */
+function plus(a, b) {
+  let temp1 = a ^ b;
+  let temp2 = a & b;
+  
+  temp1 = temp1 ^ temp2;
+  temp2 = temp1 & temp2;
+  if (temp2 !== 0) {
+    plus(temp1, temp2);
+  } else {
+    return temp1;
+  }
+}
+// assert.strictEqual(plus(3, 7), 10);
+/*
+* 数值比较
+* */
+assert.strictEqual(Boolean(3 ^ 7), true);
+assert.strictEqual(Boolean(3 ^ 3), false);
+/*
+*
+* */
