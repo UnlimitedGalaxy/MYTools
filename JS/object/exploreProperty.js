@@ -56,9 +56,9 @@ Object.defineProperty(o, "b", { value : 2, enumerable:false });
 Object.defineProperty(o, "c", { value : 3 }); // enumerable defaults to false
 o.d = 4; // 如果使用直接赋值的方式创建对象的属性，则这个属性的enumerable为true
 
-for (var i in o) {
-  console.log(i);
-}
+// for (var i in o) {
+//   console.log(i);
+// }
 // 打印 'a' 和 'd' (in undefined order)
 
 Object.keys(o); // ["a", "d"]
@@ -66,5 +66,14 @@ Object.keys(o); // ["a", "d"]
 assert.deepEqual(o.propertyIsEnumerable('a'), true); // true
 assert.deepEqual(o.propertyIsEnumerable('b'), false); // false
 assert.deepEqual(o.propertyIsEnumerable('c'), false); // false
-debugger;
+// debugger;
 
+/*
+* explore value
+* */
+
+var o1 = {}
+Object.defineProperty(o1, 'a', {});
+assert.deepEqual(o1.a, undefined); //没有value的情况
+// console.log('没有value的情况: ', o1.a); //undefined 不是null
+assert.deepEqual(o1.b, undefined); //没有定义key属性的情况，一样是undefined
