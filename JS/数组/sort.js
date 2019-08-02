@@ -26,7 +26,7 @@ const test1 = ['ac', 'ab', 'ae'];
 
 const test2 = [{}, 'ab', ['a'], undefined];
 
-const test3 = [6, 10, 4, 3, 8, undefined];
+const test3 = [6, 10, 4, 3, 8, 4, 9, 22];
 
 // test2.forEach(i => {
 // 	// debugger;
@@ -43,4 +43,110 @@ test1.sort((a, b) => {
 	// console.log('a b', a, b);
 });
 
-console.log('result', test3.sort((a, b) => { return - (a - b) }));
+// console.log('result', test3.sort((a, b) => { return - (a - b) }));
+
+function mySort(arr, compareFun) {
+
+}
+// 以第一位为分割点，分割数组
+// 以第一个数为基数，左边是小于基数的数，右边是大于基数的数
+function myDivideByBase(arr) {
+  let temp = arr.slice();
+  let result = temp.splice(0, 1);
+  let compareVal = result[0];
+  temp.forEach(val => {
+    if (val > compareVal) {
+      result.push(val);
+    } else {
+      result.unshift(val);
+    }
+  });
+  return result;
+}
+function exchange(arr, i, j) {
+  let temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp;
+}
+// 如何证明成立呢
+
+function ofDivideByBase(arr) {
+  let baseVal = arr[0];
+  let i = 1;
+  let j = arr.length - 1;
+  function seek() {
+    function seekFromRight() {
+      if (j === i) {
+        return j;
+      }
+      if (arr[j] > baseVal) {
+        j --;
+        return seekFromRight()
+      } else {
+        return j;
+      }
+    }
+    function seekFromLeft() {
+      if (j == i) {
+        return i;
+      }
+      if (arr[i] < baseVal) {
+        i ++;
+        return seekFromLeft()
+      } else {
+        return i;
+      }
+    }
+    let rightIndex = seekFromRight();
+    let leftIndex = seekFromLeft();
+    if (rightIndex === leftIndex) {
+      exchange(arr, 0, leftIndex);
+    } else {
+      exchange(arr, rightIndex, leftIndex)
+      seek()
+    }
+  }
+  seek();
+  return arr;
+}
+
+// quickSort
+function quickSort(arr, i, j) {
+  let baseVal = arr[i];
+  function seek() {
+    function seekFromRight() {
+      if (j === i) {
+        return j;
+      }
+      if (arr[j] > baseVal) {
+        j --;
+        return seekFromRight()
+      } else {
+        return j;
+      }
+    }
+    function seekFromLeft() {
+      if (j == i) {
+        return i;
+      }
+      if (arr[i] < baseVal) {
+        i ++;
+        return seekFromLeft()
+      } else {
+        return i;
+      }
+    }
+    let rightIndex = seekFromRight();
+    let leftIndex = seekFromLeft();
+    if (rightIndex === leftIndex) {
+      exchange(arr, 0, leftIndex);
+    } else {
+      exchange(arr, rightIndex, leftIndex)
+      seek()
+    }
+  }
+  seek();
+  return arr;
+}
+
+console.log('result: ', ofDivideByBase(test3));

@@ -1,4 +1,4 @@
-const compositeInherit = require('./exploreInherit').compositeInherit;
+const compositeInherit = require('../class/exploreInherit').compositeInherit;
 
 /*
 * hasOwnProperty

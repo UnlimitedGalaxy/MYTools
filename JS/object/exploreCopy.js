@@ -6,6 +6,7 @@
 *
 * Resource：
 * 1. https://segmentfault.com/a/1190000016672263
+* 2. https://juejin.im/post/5c45112e6fb9a04a027aa8fe?utm_source=gold_browser_extension
 * */
 function createData(deep = 0, breadth = 0) {
   const data = {}; // origin obj

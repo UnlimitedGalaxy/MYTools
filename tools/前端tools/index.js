@@ -187,6 +187,12 @@ const produceData = curry(function(path, obj) {
 * ]
 * Description:
 * 1. 它读取非对象的值，在对象上的访问路径
+* Usage:
+* // const result = R.reduce((ac, item) => {
+//   let val = item.pop();
+//   debugger;
+//   return R.assocPath(item, val, ac);
+// }, obj)(mergeRelation);
 * */
 
 const convertObjToPath = function(Obj) {
@@ -221,6 +227,12 @@ const convertObjToPath = function(Obj) {
   
   return final;
 };
+
+function mergeObjectDeeply (targetObj, mergeObj) {
+  const mergeRelation = convertObjToPath(mergeObj);
+  const result = R.reduce((ac, item) => R.assocPath(item, item.pop(), ac), obj)(mergeRelation);
+  return result;
+}
 
 function judgeObj(o) {
   return typeof o === 'object' && o !== null;

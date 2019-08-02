@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Event</title>
+  <style>
+    .grandfather {
+      width: 500px;
+      height: 500px;
+      background-color: gray;
+    }
+    .father {
+      width: 400px;
+      height: 400px;
+      background-color: blue;
+    }
+    .child {
+      width: 700px;
+      height: 300px;
+      position: fixed;
+      left: 300px;
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <div id="grandfather" class="grandfather">
+    <div id="father" class="father">
+      <div id="child" class="child"></div>
+    </div>
+  </div>
+  
+  <script>
+    let grandfather = document.getElementById('grandfather'),
+      father = document.getElementById('father'),
+      child = document.getElementById('child');
+    // window.addEventListener('click', function () {
+    //   console.log('window bubble click');
+    // });
+    // document.addEventListener('click', function () {
+    //   console.log('document bubble click');
+    // });
+    // document.body.addEventListener('click', function () {
+    //   console.log('body bubble click');
+    // });
+    // grandfather.addEventListener('click', function () {
+    //   console.log('grandfather capture click');
+    // }, true);
+    // grandfather.addEventListener('click', function () {
+    //   console.log('grandfather bubble click');
+    // }, false);
+    // father.addEventListener('click', function () {
+    //   console.log('father click');
+    // }, true);
+    var cb1 = function () {
+      console.log('cb1 child click');
+    };
+    var cb2 = function () {
+      console.log('cb2 child click');
+    };
+    child.addEventListener('click', cb1);
+    child.addEventListener('click', cb2);
+    
+  </script>
+</body>
+</html>

@@ -3,15 +3,27 @@ const testArr = ['a', 'b', 'c', 'd'];
 
 /*
 * define
-* 1. convey begin value and end value
+* 1. convey a serial of words between begin value and end value
 * 2. create new Array
+* 3. 原来的数组是不会变的
 * */
+
+/*
+* problem:
+* . if the sliced words includes the end or not
+*   - expectation
+*     not includes
+*   - fact
+*     you're right
+* */
+// console.log(testArr.slice(0, 3));
 
 /*
 situation 1
 . 0 ~ arr.length 范围内
 **/
 assert.deepEqual(testArr.slice(1), ['b', 'c', 'd']);
+// console.log('testArr', testArr); // 证明不会改变原来的数组
 
 // assert.deepEqual(testArr.slice(1, 2), ['b', 'c']); // 错误包含开始点，但不包含结束点
 assert.deepEqual(testArr.slice(1, 2), ['b']); // 这样才对
@@ -27,4 +39,4 @@ situation 2
 * */
 
 // assert.deepEqual(testArr.slice(0, -1), ['a']); // 错误，在这里-1指代的是最后一个元素
-assert.deepEqual(testArr.slice(2, -1), ['a']);
+// assert.deepEqual(testArr.slice(2, -1), ['a']);

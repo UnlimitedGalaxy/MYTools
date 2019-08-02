@@ -77,6 +77,8 @@ function OrdinaryOwnPropertyKeys(O) {
 * explore keys api
 * 1. transfer params into obj
 * 2. get can rend
+* Conclusion:
+* 1. 不会迭代prototype的变量
 * */
 const testObj = {
   5: 5,
@@ -86,23 +88,38 @@ const testObj = {
 // console.log('values: ', Object.values(testObj));
 // console.log('entries: ', Object.entries(testObj));
 
-const a = {a: 'a', b: 'b'};
-const b = Object.create(a);
-b.c = 'c';
+// const a = {a: 'a', b: 'b'};
+// const b = Object.create(a);
+// b.c = 'c';
 // console.log('result: ', Object.keys(b)); // 不会迭代prototype的变量
 
 /*
 * iterate object's prototype
 * */
-let c = Object.create(b);
-let temp = c;
+// let c = Object.create(b);
+// let temp = c;
 
-while (temp) {
-  temp = Object.getPrototypeOf(temp);
-  // debugger;
-  if (temp === Object.prototype) {
-    break;
-  }
-}
+// while (temp) {
+//   temp = Object.getPrototypeOf(temp);
+//   // debugger;
+//   if (temp === Object.prototype) {
+//     break;
+//   }
+// }
 
+/*
+* for ... in ...
+* Question:
+* . if it will iterate the object's prototype
+*   Answer：yes, it will
+* */
+// const prototypeObj = {
+//   a: 'a',
+// }
+// const b = Object.create(prototypeObj);
+// b.b = 'b';
+//
+// for (let key in b) {
+//   console.log(key);
+// }
 
